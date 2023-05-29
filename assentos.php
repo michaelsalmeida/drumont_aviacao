@@ -177,6 +177,7 @@ $linha_aviao = mysqli_fetch_assoc($executa_consulta);
             while($linha_passagem = mysqli_fetch_assoc($executa_verificacao)){
                 $cliente++;
                 $_SESSION["poltrona_cliente$cliente"] = $linha_passagem['poltrona_ida'];
+                $_SESSION["passagem_cancel$cliente"] = $linha_passagem['cancelado'];
             }
 
             $cliente = 1;
@@ -185,7 +186,7 @@ $linha_aviao = mysqli_fetch_assoc($executa_consulta);
                 echo "<button id='assento' class='";
                 
                 // Se o assento já estiver sido escolhido, ele terá uma cor cinza
-                if(($mostrar == $_SESSION["poltrona_cliente$cliente"])){
+                if(($mostrar == $_SESSION["poltrona_cliente$cliente"])&&($_SESSION["passagem_cancel$cliente"] == 'NAO')){
                     echo "btn btn-secondary p-0 rounded-4 text-center";
                     $cliente++;
                 }else{

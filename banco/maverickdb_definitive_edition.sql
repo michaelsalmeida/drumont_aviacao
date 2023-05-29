@@ -278,16 +278,20 @@ INSERT INTO `msg_cliente` (`pk_msg`, `email`, `msg`) VALUES
 --
 
 CREATE TABLE `pagamento` (
-  `pk_pag` int(10) NOT NULL,
+  `pk_pag` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `forma_pag` enum('CREDITO','DEBITO','PIX') DEFAULT NULL,
   `valor_pag` decimal(6,2) DEFAULT NULL,
   `data_pag` datetime DEFAULT NULL,
-  `fk_passagem` int(10) DEFAULT NULL
+  `fk_passagem` int(10) DEFAULT NULL,
+  `fk_passagem_animal` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `pagamento`
 --
+
+INSERT INTO `pagamento` (`forma_pag`, `valor_pag`, `data_pag`, `fk_passagem_animal`) 
+values ('DEBITO', 150, '2023-05-07 15:28:55', 5);
 
 INSERT INTO `pagamento` (`pk_pag`, `forma_pag`, `valor_pag`, `data_pag`, `fk_passagem`) VALUES
 (1, 'CREDITO', '988.95', '2023-05-07 15:28:55', 1),
@@ -318,7 +322,7 @@ CREATE TABLE `passagem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `passagem_animal` (
-  `pk_passagem_animal` int(10) NOT NULL PRIMARY KEY,
+  `pk_passagem_animal` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(150) DEFAULT NULL,
   `data_nasc` DATE NOT NULL,
   `aviao_ida` int(10) DEFAULT NULL,
@@ -428,9 +432,6 @@ ALTER TABLE `msg_cliente`
 --
 -- Índices para tabela `pagamento`
 --
-ALTER TABLE `pagamento`
-  ADD PRIMARY KEY (`pk_pag`),
-  ADD KEY `fk_passagem` (`fk_passagem`);
 
 --
 -- Índices para tabela `passagem`
@@ -510,8 +511,6 @@ ALTER TABLE `msg_cliente`
 --
 -- AUTO_INCREMENT de tabela `pagamento`
 --
-ALTER TABLE `pagamento`
-  MODIFY `pk_pag` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `passagem`
@@ -559,6 +558,8 @@ ALTER TABLE `gestao_voo`
 --
 ALTER TABLE `pagamento`
   ADD CONSTRAINT `pagamento_ibfk_1` FOREIGN KEY (`fk_passagem`) REFERENCES `passagem` (`pk_passagem`);
+ALTER TABLE `pagamento`
+  ADD CONSTRAINT `pagamento_ibfk_2` FOREIGN KEY (`fk_passagem_animal`) REFERENCES `passagem_animal` (`pk_passagem_animal`);
 
 --
 -- Limitadores para a tabela `passagem`

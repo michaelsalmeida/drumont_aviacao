@@ -17,7 +17,7 @@ if ($_SESSION['retorno'] == 'apenas ida') {
 
             // Looping que verifica se o assento já foi escolhido
             for($cliente = 1; $cliente <= $num_passagem['qtd_registro']; $cliente++){
-                if($_SESSION["assento$coletar"] == $_SESSION["poltrona_cliente$cliente"]){
+                if(($_SESSION["assento$coletar"] == $_SESSION["poltrona_cliente$cliente"])&&($_SESSION["passagem_cancel$cliente"] == 'NAO')){
                     $_SESSION["assento$coletar"] = '';
                     $_SESSION["msg_assento$coletar"] = "<p style='font-size: 13px' class='text-danger'>* Esse assento já está ocupado</p>";
                     header('Location: assentos.php');
@@ -55,7 +55,7 @@ if ($_SESSION['retorno'] == 'apenas ida') {
 
             // Looping que verifica se o assento já foi escolhido
             for($cliente = 1; $cliente <= $num_passagem['qtd_registro']; $cliente++){
-                if($_SESSION["assento_retorno$coletar"] == $_SESSION["poltrona_retorno_cliente$cliente"]){
+                if(($_SESSION["assento_retorno$coletar"] == $_SESSION["poltrona_retorno_cliente$cliente"])&&($_SESSION["passagem_retorno_cancel$cliente"] == 'NAO')){
                     $_SESSION["assento_retorno$coletar"] = '';
                     $_SESSION["msg_assento_retorno$coletar"] = "<p style='font-size: 13px' class='text-danger'>* Esse assento já está ocupado</p>";
                     header('Location: assento_retorno.php');

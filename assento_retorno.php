@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Looping que verifica se o assento já foi escolhido
         for($cliente = 1; $cliente <= $num_passagem['qtd_registro']; $cliente++){
-            if($_SESSION["assento$coletar"] == $_SESSION["poltrona_cliente$cliente"]){
+            if(($_SESSION["assento$coletar"] == $_SESSION["poltrona_cliente$cliente"])&&($_SESSION["passagem_cancel$cliente"] == 'NAO')){
                 $_SESSION["assento$coletar"] = '';
                 $_SESSION["msg_assento$coletar"] = "<p style='font-size: 13px' class='text-danger'>* Esse assento já está ocupado</p>";
                 header('Location: assentos.php');
@@ -196,6 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             while($linha_passagem = mysqli_fetch_assoc($executa_verificacao)){
                 $cliente++;
                 $_SESSION["poltrona_retorno_cliente$cliente"] = $linha_passagem['poltrona_volta'];
+                $_SESSION["passagem_retorno_cancel$cliente"] = $linha_passagem['cancelado']
             }
 
             $cliente = 1;
@@ -203,7 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             for ($mostrar = 1; $mostrar <= $linha_aviao['num_assento']; $mostrar++) {
                 echo "<button id='assento' class='";
                 
-                if($mostrar == $_SESSION["poltrona_retorno_cliente$cliente"]){
+                if(($mostrar == $_SESSION["poltrona_retorno_cliente$cliente"])&&($_SESSION["passagem_retorno_cancel$cliente"] == 'NAO')){
                     echo "btn btn-secondary p-0 rounded-4 text-center";
                     $cliente++;
                 }else{
