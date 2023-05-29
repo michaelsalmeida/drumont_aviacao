@@ -1,0 +1,49 @@
+h1{
+    background-color: #460AC6;
+    color: white;
+}
+
+#informacao_viagem{
+    display: block;
+    margin: auto;
+}
+
+#botao_buscar_viagem{
+    background-color: #fba300;
+}
+
+#botao_buscar_viagem:hover{
+    background-color: #ffc62a;
+}
+
+@media (min-width:768px){
+    #apenas_ida{
+        margin-left: 11px;
+    }
+}
+
+
+/* footer {
+    position: absolute !important;
+    bottom: 0 !important;
+    width: 100% !important;
+}
+
+html {
+    height: 100% !important;
+}
+  
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important;
+}
+  
+main {
+    flex: 1 !important;
+}
+  
+footer {
+    margin-top: auto !important;
+} */
+  

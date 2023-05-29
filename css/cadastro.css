@@ -1,0 +1,41 @@
+label{
+    margin-top: 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+h1{
+    color: #460AC6;
+}
+
+#formulario{
+    width: 45rem !important;
+    margin: 0 auto !important;
+    padding: 1rem;
+    border-color: #460AC6 !important;
+}
+
+main{
+    width: 100% !important;
+    /* height: 110vh !important;
+    margin: 0 auto; */
+}
+
+input{
+    border-radius: 0px 10px 0px 10px !important;
+    border-color: #460AC6 !important;
+    border-width: 2px !important;
+}
+
+button{
+    background-color: #460AC6 !important;
+}
+
+@media(max-width: 767.5px){
+    #formulario{
+        width: 100% !important;
+        border: none !important;
+    }
+}

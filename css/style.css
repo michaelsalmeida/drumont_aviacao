@@ -1,0 +1,430 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+/* main{
+    height: 500px;
+} */
+
+a{
+    text-decoration: none;
+}
+
+p{
+    margin-bottom: 0px;
+}
+
+.container-fluid{
+    margin: 0px;
+    padding: 0px;
+}
+
+#rodape{
+    background-color: #460AC6;
+    /* position: fixed !important;
+    bottom: 0 !important;
+    width: 100% !important; */
+}
+
+#rodape .col-sm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    color: white;
+}
+
+.col-sm img{
+    margin: 5px;
+}
+
+#btn-burguer{
+    background-color: #460AC6;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    transition: 0.6s;
+}
+
+#btn-burguer:hover{
+    box-shadow: 2px 2px 4px #999;
+    padding: 12px;
+    transition: 0.6s;
+}
+
+.nav-item{
+    margin: 10px;
+}
+
+#links_navbar{
+    display: flex;
+    gap: 50px;
+    margin-right: 45vw;
+}
+
+#logo_navbar_dumont{
+    margin-left: 50px;
+}
+
+#icon_fogo, #icon_aviao, #icon_ticket, #icon_tel{
+    margin-right: 5px;
+}
+
+/* #sessao1{
+    background-image: url('https://img.freepik.com/fotos-gratis/fly-ar-claro-fantastica-viagem_1232-3824.jpg?w=826&t=st=1682052101~exp=1682052701~hmac=37a6146ac4e7cdaacd53ccb6f02d901c845c778fa1abac38a72e1f6148b28f7f');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+/* #div_reserva{
+    background-color: #3706a0;
+    width: 1050px;
+    height: 300px;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+} */
+
+/* #botoes_reserva{
+    background-color: transparent;
+    padding: 15px;
+    width: 100%;
+    height: 50px;   
+    display: flex;
+    flex-direction: row;
+    align-items: center !important; 
+    gap: 20px;
+} */
+
+/* .btn-reserva{
+    background-color: transparent;
+    width: 100px;
+    border: solid 2px white;
+    border-radius: 15px;
+    color: white;
+} */
+
+/* #div_form_reserva{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+} */
+
+/* #input_destino{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    gap: 20px;
+}
+
+#input_ida_volta{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+} */
+
+/*Sessão 2*/
+
+#sessao2{
+    background-color: rgb(225, 225, 225);
+    width: 100%;
+    height: 80vh;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-inner{
+    height: 450px;
+    box-shadow: 2px 2px 2px 2px rgba(162, 162, 162, 0.3);
+}
+
+.carousel-item{
+    width: 100%;
+    height: 100%;
+}
+
+/*sessão 3*/
+#sessao3{
+    background-color: #3706a0;
+    padding: 30px !important;
+    width: 100%;
+    height: 120vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-md{
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    margin: 15px;
+    padding: 0px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#sobre{
+    height: 550px;
+    display: flex;
+    align-items: center;
+}
+
+#txt_home1, #txt_home2{
+    box-shadow: 2px 2px 2px 2px rgba(162, 162, 162, 0.7);
+    border-radius: 10px; 
+    margin: 10px;
+}
+
+
+/*Media Queries */
+
+@media (max-width: 1196px){
+    #links_navbar{
+    display: flex;
+    gap: 50px;
+    margin-right: 10vw;
+}   
+}
+
+@media (max-width: 1075px){
+    #div_reserva{
+        width: 800px;
+        height: 400px;
+    }
+
+    #input_destino{
+        display: flex;
+        flex-direction: row;
+        margin-left: 0px;
+        gap: 20px;
+    }
+
+    
+
+}
+
+@media (max-width: 992px){
+    .carousel-inner{
+        height: 300px;
+    }
+
+    .carousel-inner img{
+        height: 300px;
+    }
+
+    .carousel-item{
+        height: 300px;
+    }
+}
+
+@media (max-width: 830px){
+    #div_reserva{
+        width: 600px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #div_form_reserva{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container{
+        width: 100%;
+    }
+
+
+    .carousel-inner{
+        height: 200px;
+    }
+
+    .carousel-inner img{
+        height: 200px;
+    }
+
+    .carousel-item{
+        height: 200px;
+    }
+
+    #sessao3{
+        height: 1700px;
+    }
+
+}
+
+@media (max-width: 726px){
+    #link_nav4{
+        display: none;
+    } 
+
+    #div_reserva{
+        height: 400px;
+    }
+}
+
+@media (max-width: 630px){
+    #link_nav1{
+        display: none;
+    } 
+
+    #div_reserva{
+        width: 450px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #sobre{
+        height: 780px;
+    }
+
+    #txt_home1, #txt_home2{
+
+        box-shadow: 2px 2px 2px 2px rgba(162, 162, 162, 0.7);
+        border-radius: 0px; 
+        margin-top: 10px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 522px){
+    #links_navbar{
+        display: none;
+    }
+    
+    #lugares_viajar{
+        display: none !important;
+    }
+
+}
+
+@media (max-width: 480px){
+    #logo_navbar_dumont{
+    margin-left: 0px;
+    }
+    
+
+    #div_reserva{
+        width: 100%;
+        height: 800px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px;
+    }
+
+    #botoes_reserva{
+        width: 100%;
+        gap: 10px;
+        
+    }
+}
+
+@media (max-width: 420px){
+
+    #div_reserva{
+        margin: 100px;
+    }
+    
+    #input_destino{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #input_ida_volta{
+        display: flex;
+        flex-direction: column;
+    }
+
+    input{
+        width: 250px;
+    }
+
+    #sessao2{
+        display: none;
+    }
+
+    #sessao3{
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    #sessao3 .col-md, .card{
+        width: 100%;
+        padding: 0;
+        margin-top: 10px;
+        margin-left: 0;
+        margin-bottom: 0;
+        margin-right: 0;
+        box-shadow: none;
+        border-radius: 0px;
+    }
+}
+
+
+/* Remova a seção de código CSS que estiliza o menu hamburguer */
+.navbar-toggler{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus,
+.navbar-toggler:active{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler-icon{
+    color: #460AC6 !important;
+}
+
+.btn-close{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.btn-close:hover,
+.btn-close:focus,
+.btn-close:active{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+

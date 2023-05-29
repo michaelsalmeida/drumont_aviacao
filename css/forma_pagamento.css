@@ -1,0 +1,154 @@
+/* #vencimento::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+  
+  #vencimento::-webkit-calendar-month {
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+  }
+  
+  #vencimento::-webkit-calendar-year {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+   */
+
+#num_cartao{
+    width: 12rem;
+}
+
+#nome_titular{
+    margin-left: -7rem;
+}
+
+#vencimento{
+    width: 8rem;
+}
+
+#mes_vencimento{
+    width: 3rem;
+}
+
+#ano_vencimento{
+    width: 4rem;
+}
+
+#cod_seguranca{
+    width: 3.5rem;
+    margin-left: -4.5rem;
+}
+
+#cpf_pag{
+    width: 8rem;
+    margin-left: -6.5rem;
+}
+
+@media(max-width: 1400px){
+    /* #num_cartao{
+        margin-right: 6rem !important;
+    } */
+
+    #cod_seguranca{
+        margin-left: -2.5rem;
+    }
+
+    #cpf_pag{
+        margin-left: -3.5rem;
+    }
+
+    #nome_titular{
+        margin-left: -4rem;
+    }
+}
+
+/* @media(max-width: 1999.5px){
+    #cod_seguranca{
+        margin-left: 4rem;
+    }
+
+    #cpf_pag{
+        margin-left: 2.5rem;
+    }
+
+    #nome_titular{
+        margin-left: 4rem;
+    }
+} */
+
+@media(max-width: 1199.5px){
+    /* #num_cartao{
+        margin-right: 6rem !important;
+    } */
+
+    #cod_seguranca{
+        margin-left: -0.5rem;
+    }
+
+    #cpf_pag{
+        margin-left: -0.5rem;
+    }
+
+    #nome_titular{
+        margin-left: -1rem;
+    }
+}
+
+@media(max-width: 991.5px){
+    /* #num_cartao{
+        margin-right: 6rem !important;
+    } */
+
+    #cod_seguranca{
+        margin-left: 2rem;
+    }
+
+    #cpf_pag{
+        margin-left: 3.5rem;
+    }
+
+    #nome_titular{
+        margin-left: 2.5rem;
+    }
+}
+
+@media(max-width: 767.5px){
+    /* #num_cartao{
+        margin-right: 6rem !important;
+    } */
+
+    #cod_seguranca{
+        margin-left: 4rem;
+    }
+
+    #cpf_pag{
+        margin-left: 6.5rem;
+    }
+
+    #nome_titular{
+        margin-left: 5.5rem;
+    }
+}
+
+@media(max-width: 575.5px){
+    /* #num_cartao{
+        margin-right: 6rem !important;
+    } */
+
+    #cod_seguranca{
+        margin-left: 5.5rem;
+    }
+
+    #cpf_pag{
+        margin-left: 0rem;
+
+    }
+
+    #nome_titular{
+        margin-left: 0px;
+    }
+
+    label{
+        margin-top: 8px !important;
+    }
+}

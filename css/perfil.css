@@ -1,0 +1,95 @@
+#div_cliente_logado{
+    background-color: rgb(232, 232, 232);
+    height: 380vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#linha{
+    margin: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#div_dados_conta,#div_dados_pessoais, #div_endereco, #div_alterar_senha, #div_desativar_conta{
+    background-color: white;
+    width: 93%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px rgba(49, 49, 49, 0.2); 
+}
+
+#btn-cancel{
+    background-color: red !important;
+    color: white !important;
+    border: none !important;
+}
+
+#btn-cancel:hover{
+    background-color: red !important;
+    color: white !important;
+    border: none !important;
+}
+
+#btn-accept{
+    background-color: rgb(31, 114, 31) !important;
+    color: white !important;
+    border: none !important;
+}
+
+#btn-accept:hover{
+    background-color: rgb(31, 114, 31) !important;
+    color: white !important;
+    border: none !important;
+}
+
+
+h5{
+    color: #460AC6;
+}
+
+input{
+    padding: 15px;
+    outline: none;
+    border: solid #cccccc 2px;
+    border-radius: 5px;
+}
+
+button{
+    border: solid #460AC6 2px !important;
+    color: #460AC6 !important;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+button:hover{
+    background-color: #460AC6 !important;
+    color: white !important;
+    transition: 0.3s;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(max-width: 370px){
+    input{
+        padding: 5px;
+        width: 170px !important;
+    }
+}

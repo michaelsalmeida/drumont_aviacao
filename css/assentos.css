@@ -1,0 +1,47 @@
+#assento{
+    width: 2rem; 
+    margin: 5px;
+}
+
+#poltronas{
+    text-align: center;
+}
+
+#label_passageiro{
+    display: none;
+}
+
+@media(max-width: 332px){
+    #assento{
+        width: 1.4rem;
+        font-size: 0.8rem;
+        
+    }
+}
+
+@media(max-width: 258px){
+    #assento{
+        width: 0.8rem;
+        font-size: 0.3rem;
+
+    }
+}
+
+@media(max-width: 201px){
+    canva{
+        display: none;
+    }
+}
+
+@media(max-width: 576px){
+    #passageiros{
+        width: 10rem !important;
+        float: left;
+    }
+}
+
+@media(max-width: 577px){
+    #label_passageiro{
+        display: block;
+    }
+}

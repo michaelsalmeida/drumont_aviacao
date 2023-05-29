@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    font-family:'Roboto', sans-serif;
+    font-weight: lighter;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+#main{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#cadastrar{
+    width: 50%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    background-color: #460ac6;
+    color: white;
+    text-align: center;
+
+    
+}
+
+ input{
+    text-transform: uppercase;
+    border: 2px solid #460ac6;
+    border-radius: 0 20px 0 20px;
+    height: 30px;
+    padding: 15px;
+} 
+
+ #input_serie{
+    width: 90%;
+   margin-right: 20px;
+}
+
+#input_modelo{
+    width: 90%;
+}
+
+#input_max_pass{
+    width: 20%;
+    text-align: center;
+} 
+label{
+    font-size: 18pt;
+}
+
+#titulo{
+    font-size: 32pt;
+    font-weight:lighter;    
+    color: #460ac6; 
+    text-align: center;
+}
+
+
+#box{ 
+    padding: 25px;
+    width: 60%;
+    height: 400px;
+    border: 3px solid #460ac6;
+    
+}
+
+
+
+
+@media (max-width: 1146px) {
+    #main{
+        padding: 40px;
+    }
+    
+}
+
+@media(max-width: 999px){
+    #box{
+        width: 80%;
+        height: 500px;
+    }
+
+    #input_max_pass{
+        width: 40%;
+        text-align: center;
+    } 
+}
+
+@media(max-width: 588px){
+    #box{
+        width: 100%;
+        border: none;
+    }
+}

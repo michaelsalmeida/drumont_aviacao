@@ -1,0 +1,65 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+#editar{
+    background-color: #009C06;
+    text-align: center;
+    width: 80PX;
+    height: 30PX;
+    padding: 2px;
+    border-radius: 5px;
+}
+#gestao{
+    background-color: #0047B2;
+    margin-left: 20px;
+    text-align: center;
+    width: 80PX;
+    height: 30PX;
+    padding: 2px;
+    border-radius: 5px;
+
+}
+#apagar{
+    background-color: #C50000;
+    margin-left: 20px;
+    text-align: center;
+    width: 80PX;
+    height: 30PX;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+#links{
+    text-decoration: none;
+    color: white;
+    font-size: 10pt;
+    font-weight:700;
+}
+
+#box{
+    margin-left: 1px;
+}
+.container2{
+    padding: 5px;
+
+} 
+#textos{
+    padding: 10px ;
+    font-size: 14pt;
+}
+#pesquisar{
+    width: 80%;
+    height: 40px;
+    border-radius: 7px 0 7px 0px;
+    padding: 5px;
+}
+#btn_pesquisar{
+    border: none;
+    background-color:#0047B2;
+    width: 10vh;
+    height: 40px;
+    border-radius: 0 7px  7px 0px;
+    color: white;
+
+}

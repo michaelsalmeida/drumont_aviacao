@@ -1,0 +1,139 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+/* main{
+    height: 500px;
+} */
+
+a{
+    text-decoration: none;
+}
+
+.container-fluid{
+    margin: 0px;
+    padding: 0px;
+}
+
+#rodape{
+    background-color: #460AC6;
+}
+
+#rodape .col-sm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    color: white;
+}
+
+.col-sm img{
+    margin: 5px;
+}
+
+#btn-burguer{
+    background-color: #460AC6;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    transition: 0.6s;
+}
+
+#btn-burguer:hover{
+    box-shadow: 2px 2px 4px #999;
+    padding: 12px;
+    transition: 0.6s;
+}
+
+.nav-item{
+    margin: 10px;
+}
+
+#links_navbar{
+    display: flex;
+    gap: 50px;
+    margin-right: 45vw;
+}
+
+#logo_navbar_dumont{
+    margin-left: 50px;
+}
+
+#icon_fogo, #icon_aviao, #icon_ticket, #icon_tel{
+    margin-right: 5px;
+}
+
+
+@media (max-width: 1196px){
+    #links_navbar{
+    display: flex;
+    gap: 50px;
+    margin-right: 10vw;
+}   
+}
+
+@media (max-width: 726px){
+    #link_nav4{
+        display: none;
+    } 
+}
+
+@media (max-width: 624px){
+    #link_nav1{
+        display: none;
+    } 
+}
+
+@media (max-width: 522px){
+    #links_navbar{
+        display: none;
+    }
+    
+    #lugares_viajar{
+        display: none !important;
+    }
+
+}
+
+@media (max-width: 389px){
+    #logo_navbar_dumont{
+    margin-left: 0px;
+}
+}
+
+/* Remova a seção de código CSS que estiliza o menu hamburguer */
+.navbar-toggler{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus,
+.navbar-toggler:active{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler-icon{
+    color: #460AC6 !important;
+}
+
+.btn-close{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.btn-close:hover,
+.btn-close:focus,
+.btn-close:active{
+    outline: none !important;
+    box-shadow: none !important;
+}

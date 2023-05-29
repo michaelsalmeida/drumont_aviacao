@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    position: relative;
+    background-image: url('https://img.freepik.com/fotos-gratis/fly-ar-claro-fantastica-viagem_1232-3824.jpg?w=826&t=st=1682052101~exp=1682052701~hmac=37a6146ac4e7cdaacd53ccb6f02d901c845c778fa1abac38a72e1f6148b28f7f');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+nav{
+    position: relative;
+    z-index: 2;
+}
+
+.itens_adm a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#rodape{
+    position: relative;
+    z-index: 2;
+}
+
+#conteudo-generico{
+    width: 100%;
+    height: 150vh;
+}
+
+#logo_home_adm{
+    width: 100%;
+    height: 250px;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_itens_adm{
+    position: relative;
+    top: 130px;
+    z-index: 2;
+    background-color: transparent;
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.div_itens_adm .row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_itens_adm .row .col-md{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.itens_adm{
+    margin: 10px;
+    background-color: rgb(224, 224, 225);
+    width: 230px;
+    height: 230px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.itens_adm:hover{
+    width: 235px;
+    height: 235px;
+    background-color: white;
+    transition: 0.3s;
+    box-shadow: 2px 2px 2px 2px rgba(30, 0, 255, 0.6);
+}
+
+@media (max-width: 1000px){
+    .row .col-md:last-child{
+        display: none;
+    }
+}
+
+@media (max-width: 768px){
+
+    #conteudo-generico{
+        height: 1500px;
+    }
+
+    .div_itens_adm{
+        top: 330px;
+    }
+
+}

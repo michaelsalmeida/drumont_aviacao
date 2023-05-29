@@ -1,0 +1,107 @@
+p {
+    display: inline-block;
+    margin-right: 50px; /* Opcional: Adiciona um espaço entre os elementos */
+    text-align: center;
+    font-size: 30px;
+  }
+  
+
+#icons {
+    width: 50px ;
+    height: 50px ;
+}
+
+#contatos {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center; /* centraliza verticalmente */
+  height: 300px; /* altura opcional para a div */
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#caixa {
+    width: 400px;    
+}
+
+#form_msg{
+  background-color: #9fa3a8;
+}
+  
+#imagem_callcenter {
+  width: 100%;
+  height: auto;
+    
+}
+  
+.texto-sobreposto h3 {
+  margin-bottom: 20px;
+}
+  
+  @media (max-width: 414px) {
+    /* redimensiona o formulário para ajustar à largura da tela */
+    #icons {
+      width: 30px;
+      height: 30px;
+    }
+    #texto_icons {
+      font-size: 12pt;
+      
+    }
+    #imagem_callcenter {
+      width: 100%;
+      height: 400px;
+    }
+    #caixa {
+      width: 300px;
+    }
+    }
+    #contatos {
+      display: flex;
+      justify-content: center; /* centraliza horizontalmente */
+      align-items: center;
+      height: 300px;
+      
+    }
+  
+ 
+  @media (max-width: 915px) {
+    #texto_icons {
+      font-size: 20px;
+    }
+    
+  }
+  @media (max-width: 647px) {
+    #texto_icons {
+      font-size: 20px;
+    }
+    
+  }
+  @media (max-width: 600px) {
+    #texto_icons {
+      font-size: 20px;
+    }
+
+    #icons {
+      width: 30px;
+      height: 30px;
+      display: block;
+      justify-content: center; /* centraliza horizontalmente */
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    #contatos {
+      display: block;
+      justify-content: center; /* centraliza horizontalmente */
+      align-items: center;
+      height: 300px;
+      
+      
+    }
+  }
+  
