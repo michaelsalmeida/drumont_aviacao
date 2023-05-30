@@ -234,7 +234,107 @@ if (!isset($_SESSION['verifica_cliente'])) {
 
             }
         } else {
-            echo "<div style='height: 100vh; width: 100%; display: flex; justify-content: center; align-items: center;'><h1>Você não tem passagem nenhuma :(</h1></div>";
+            echo "<div style='height: 30vh; width: 100%; display: flex; justify-content: center; align-items: center;'><h1>Você não tem passagem nenhuma :(</h1></div>";
+        }
+
+        $sql = "SELECT pk_passagem_animal, passagem_animal.nome as nomeAni, hora_partida, local_voo, local_pouso, hora_chegada, valor_pag, forma_pag
+        FROM passagem_animal 
+        INNER JOIN cliente ON cliente.pk_cliente = passagem_animal.fk_cliente
+        INNER JOIN pagamento ON passagem_animal.pk_passagem_animal = pagamento.fk_passagem_animal 
+        INNER JOIN aviao ON passagem_animal.aviao_ida = aviao.pk_aviao 
+        INNER JOIN gestao_voo ON aviao.pk_aviao = gestao_voo.fk_aviao 
+        WHERE cliente.pk_cliente = '$id' AND passagem_animal.cancelado = 'NAO' ORDER BY passagem_animal.pk_passagem_animal DESC";
+
+        $query = mysqli_query($conn, $sql);
+
+        if (mysqli_affected_rows($conn) > 0) {
+            while ($linha = mysqli_fetch_assoc($query)) {
+
+                $data_partida = $linha['hora_partida'];
+
+                // Transforma a data resgatada em timestamp
+                $timestamp_resgatado = strtotime($data_partida);
+
+                // Calcula a diferença em segundos entre a data resgatada e a data atual
+                $diferenca_segundos = $timestamp_resgatado - time();
+
+                // Calcula o número de segundos em 7 dias
+                $sete_dias_segundos = 7 * 24 * 60 * 60;
+
+                // Verifica se faltam mais de 7 dias para a data chegar
+                if ($diferenca_segundos > $sete_dias_segundos) {
+                    echo "
+                    <br>
+                    <div style='background-color: white;
+                    width: 93%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    padding: 20px;
+                    border-radius: 5px;
+                    box-shadow: 2px 2px 2px 2px rgba(49, 49, 49, 0.2)'>
+
+                    ID: $linha[pk_passagem_animal]
+                    <br>
+                    NOME DO ANIMAL: $linha[nomeAni]
+                    <br>
+                    ORIGEM: $linha[local_voo]
+                    <br>
+                    DESTINO: $linha[local_pouso]
+                    <br>
+                    DATA DA PARTIDA: $linha[hora_partida]
+                    <br>
+                    DATA DA CHEGADA: $linha[hora_chegada]
+                    <br>
+                    VALOR: $linha[valor_pag]
+                    <br>
+                    FORMA DE PAGAMENTO: $linha[forma_pag]
+
+                    <a href='proc_cancelar_passagem_animal.php?id=$linha[pk_passagem_animal]'><button
+                    style='width: 200px; background-color: #460AC6; color: white !important; border-radius: 5px;'>Cancelar</button></a>
+                    
+                    
+                    </div>
+                    <hr> ";
+                } else {
+                    echo "<br>
+                    <div style='background-color: white;
+                    width: 93%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    padding: 20px;
+                    border-radius: 5px;
+                    box-shadow: 2px 2px 2px 2px rgba(49, 49, 49, 0.2)'>
+
+                    ID: $linha[pk_passagem_animal]
+                    <br>
+                    NOME: $linha[nome]
+                    <br>
+                    ORIGEM: $linha[local_voo]
+                    <br>
+                    DESTINO: $linha[local_pouso]
+                    <br>
+                    DATA DA PARTIDA: $linha[hora_partida]
+                    <br>
+                    DATA DA CHEGADA: $linha[hora_chegada]
+                    <br>
+                    VALOR: $linha[valor_pag]
+
+                    <br>
+                    FORMA DE PAGAMENTO: $linha[forma_pag]                    
+                    
+                    </div>
+                    <hr> ";
+                }
+
+            }
+        } else {
+            echo "<div style='height: 30vh; width: 100%; display: flex; justify-content: center; align-items: center;'><h1>Você não tem passagem para animais 🦙</h1></div>";
         }
 
         ?>

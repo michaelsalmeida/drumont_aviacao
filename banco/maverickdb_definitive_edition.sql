@@ -290,9 +290,6 @@ CREATE TABLE `pagamento` (
 -- Extraindo dados da tabela `pagamento`
 --
 
-INSERT INTO `pagamento` (`forma_pag`, `valor_pag`, `data_pag`, `fk_passagem_animal`) 
-values ('DEBITO', 150, '2023-05-07 15:28:55', 5);
-
 INSERT INTO `pagamento` (`pk_pag`, `forma_pag`, `valor_pag`, `data_pag`, `fk_passagem`) VALUES
 (1, 'CREDITO', '988.95', '2023-05-07 15:28:55', 1),
 (2, 'CREDITO', '988.95', '2023-05-07 21:53:18', 5),
@@ -328,7 +325,8 @@ CREATE TABLE `passagem_animal` (
   `aviao_ida` int(10) DEFAULT NULL,
   `aviao_volta` int(10) DEFAULT NULL,
   `cancelado` enum('SIM','NAO') NOT NULL DEFAULT 'NAO',
-  `data_cancel` datetime DEFAULT NULL
+  `data_cancel` datetime DEFAULT NULL,
+  `fk_cliente` int(10) not null
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Extraindo dados da tabela `passagem`
@@ -568,6 +566,9 @@ ALTER TABLE `passagem`
   ADD CONSTRAINT `passagem_ibfk_1` FOREIGN KEY (`fk_cliente`) REFERENCES `cliente` (`pk_cliente`),
   ADD CONSTRAINT `passagem_ibfk_2` FOREIGN KEY (`aviao_ida`) REFERENCES `aviao` (`pk_aviao`),
   ADD CONSTRAINT `passagem_ibfk_3` FOREIGN KEY (`aviao_volta`) REFERENCES `aviao` (`pk_aviao`);
+
+ALTER TABLE `passagem_animal`
+  ADD CONSTRAINT `passagem_animal_ibfk_1` FOREIGN KEY (`fk_cliente`) REFERENCES `cliente` (`pk_cliente`);
 
 --
 -- Limitadores para a tabela `rg`
