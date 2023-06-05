@@ -222,6 +222,7 @@
                                     $_SESSION['msg'] = "<h5 class='text-uppercase text-danger text-center'>não foi possível realizar a compra - tente novamente mais tarde</h5>";
                                     header('Location: ../pagamento.php');
                                 }
+                                
                             } else {
                                 $_SESSION['msg'] = "<h5 class='text-uppercase text-danger text-center'>não foi possível realizar a compra - tente novamente mais tarde</h5>";
                                 header('Location: ../pagamento.php');

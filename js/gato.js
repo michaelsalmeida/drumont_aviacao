@@ -25,3 +25,21 @@ function agrdeu() {
     alert("Limite de animais atingido!!");
   }
 }
+
+
+
+function executeFunctions() {
+    // Define as variaveis necessárias no caso da função for acionada pelo botão de agendar
+    extra = `&qtdani=${quantAnimal}`
+
+    var xhr = new XMLHttpRequest();
+    // Executa o arquivo que irá iniciar a função
+    xhr.open("GET", location.origin + `/drumont-aviacao/functions.php?${extra}`, false);
+    xhr.onload = function () {
+        if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+            var response = xhr.responseText; // Pega a resposta do servidor
+            location.href = response; // Segue a url voltada do servidor
+        }
+    };
+    xhr.send();
+}
