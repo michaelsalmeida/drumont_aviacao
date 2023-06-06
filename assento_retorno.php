@@ -196,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             while($linha_passagem = mysqli_fetch_assoc($executa_verificacao)){
                 $cliente++;
                 $_SESSION["poltrona_retorno_cliente$cliente"] = $linha_passagem['poltrona_volta'];
-                $_SESSION["passagem_retorno_cancel$cliente"] = $linha_passagem['cancelado']
+                $_SESSION["passagem_retorno_cancel$cliente"] = $linha_passagem['cancelado'];
             }
 
             $cliente = 1;

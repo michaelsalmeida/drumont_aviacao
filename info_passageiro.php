@@ -102,6 +102,16 @@ if ($_SESSION['retorno'] == 'apenas ida') {
 </head>
 
 <body>
+    <input type="text" value="<?php echo $_SESSION['aviao_ida'];?>" id='ida' hidden>
+
+    <?php
+    if (isset($_SESSION['aviao_volta'])) {
+        echo "<input type='text' value=".'"'.$_SESSION['aviao_volta'].'"'." id='volta' hidden>";
+    } else {
+        echo "<input type='text' value='-1' id='volta' hidden>";
+    }
+    ?>
+
     <!--INICIO BARRA DE NAVEGAÇÃO-->
     <header>
         <!--INICIO BARRA DE NAVEGAÇÃO-->

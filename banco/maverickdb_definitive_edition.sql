@@ -342,6 +342,14 @@ INSERT INTO `passagem` (`pk_passagem`, `sobrenome`, `nome`, `cpf_passagem`, `pol
 
 -- --------------------------------------------------------
 
+UPDATE gestao_voo
+        SET quant_animal =
+        (SELECT quant_animal FROM gestao_voo 
+        WHERE local_voo = 'Aeroporto de São Paulo/Congonhas (CGH)' and 
+        hora_partida like '2023-06-10 15:45:00') + 3
+        WHERE local_voo = 'Aeroporto de São Paulo/Congonhas (CGH)' and 
+        hora_partida like '2023-06-10 15:45:00';
+
 --
 -- Estrutura da tabela `rg`
 --

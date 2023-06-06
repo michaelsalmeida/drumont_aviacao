@@ -129,7 +129,12 @@ if (!isset($_SESSION['verifica_cliente'])) {
         $cpf = $_SESSION['cpf_cliente'];
         $id = $_SESSION['verifica_cliente'];
 
-        $sql = "SELECT * FROM cliente INNER JOIN passagem ON cliente.pk_cliente = passagem.fk_cliente INNER JOIN pagamento ON passagem.pk_passagem = pagamento.fk_passagem INNER JOIN aviao ON passagem.aviao_ida = aviao.pk_aviao INNER JOIN gestao_voo ON aviao.pk_aviao = gestao_voo.fk_aviao WHERE cliente.pk_cliente = '$id' AND passagem.cancelado = 'NAO' ORDER BY passagem.pk_passagem DESC";
+        $sql = "SELECT * FROM cliente 
+        INNER JOIN passagem ON cliente.pk_cliente = passagem.fk_cliente 
+        INNER JOIN pagamento ON passagem.pk_passagem = pagamento.fk_passagem 
+        INNER JOIN aviao ON passagem.aviao_ida = aviao.pk_aviao 
+        INNER JOIN gestao_voo ON aviao.pk_aviao = gestao_voo.fk_aviao 
+        WHERE cliente.pk_cliente = '$id' AND passagem.cancelado = 'NAO' ORDER BY passagem.pk_passagem DESC";
 
         $query = mysqli_query($conn, $sql);
 
@@ -313,7 +318,7 @@ if (!isset($_SESSION['verifica_cliente'])) {
 
                     ID: $linha[pk_passagem_animal]
                     <br>
-                    NOME: $linha[nome]
+                    NOME: $linha[nomeAni]
                     <br>
                     ORIGEM: $linha[local_voo]
                     <br>

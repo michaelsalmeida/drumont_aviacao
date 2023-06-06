@@ -2,8 +2,6 @@
     session_start();
     include_once('conexao.php');
 
-    echo $_SESSION['forma_pag'];
-
     // Função que vai validar o cartão de crédito ou débito
     function cardIsValid($cardNumber){
         $number = substr($cardNumber, 0, -1);
@@ -266,90 +264,69 @@
 
                 //  Condição que verfica se a viagem de de ida e volta ou somente ida
                 if ($_SESSION["retorno"] != 'apenas ida') {
-                    // Se for de ida e volta, duas variáveis recebem o assento de retorno e avião de retorno e eles são inseridos no banco junto com as demais informações
-                    $assento_volta = $_SESSION["assento_passagem_volta$inserir"];
-                    $aviao_volta = $_SESSION['aviao_volta'];
+                    $stmtIda = $conn -> prepare('SELECT quant_animal FROM gestao_voo WHERE  pk_voo = ?');
 
-                    $criar_passagem = "INSERT INTO passagem (sobrenome, nome, cpf_passagem, poltrona_ida, poltrona_volta, fk_cliente, aviao_ida, aviao_volta) VALUES ('$sobrenome', '$nome', '$cpf_passagem', '$assento_ida', '$assento_volta', $cliente, $aviao_ida, $aviao_volta)";
-                    $executa_criacao = mysqli_query($conn, $criar_passagem);
+                    $stmtIda -> bind_param('s', $aviao_ida);
 
-                    $inseriu = 1;
-                            
-                    for ($i = 1; $i <= $_SESSION['quantAnimal']; $i++) {
-                        $nome_animal = $_SESSION['nome_animal'.$i];
-                        $data_nasc = $_SESSION['nasc_animal'.$i];
+                    $stmtIda -> execute();
 
-                        $criar_passagem_animal = $conn -> 
-                        prepare("INSERT into passagem_animal VALUES (default, ?, ?, ?, ?, 'NAO', null, ?)");
+                    $stmtIda->bind_result($quant_animalAvi);
+                    $stmtIda -> fetch();
+                    $stmtIda -> close();
 
-                        $criar_passagem_animal -> bind_param('sssss',
-                        $nome_animal, $data_nasc, $aviao_ida, $aviao_volta, $_SESSION['verifica_cliente']);
+                    echo $quant_animalAvi + $_SESSION['quantAnimal'];
+                    if ($quant_animalAvi + $_SESSION['quantAnimal'] <= 6) {
+                        // Se for de ida e volta, duas variáveis recebem o assento de retorno e avião de retorno e eles são inseridos no banco junto com as demais informações
+                        $assento_volta = $_SESSION["assento_passagem_volta$inserir"];
+                        $aviao_volta = $_SESSION['aviao_volta'];
 
-                        $criar_passagem_animal -> execute();
+                        $criar_passagem = "INSERT INTO passagem (sobrenome, nome, cpf_passagem, poltrona_ida, poltrona_volta, fk_cliente, aviao_ida, aviao_volta) VALUES ('$sobrenome', '$nome', '$cpf_passagem', '$assento_ida', '$assento_volta', $cliente, $aviao_ida, $aviao_volta)";
+                        $executa_criacao = mysqli_query($conn, $criar_passagem);
 
-                        $id_pass = mysqli_insert_id($conn);
-                        $armazenar_pagamento_animal = $conn -> 
-                        prepare("INSERT INTO pagamento (forma_pag, valor_pag, data_pag, fk_passagem_animal) 
-                        values (?, 150, NOW(), ?)");
+                        $inseriu = 1;
+                                
+                        for ($i = 1; $i <= $_SESSION['quantAnimal']; $i++) {
+                            $nome_animal = $_SESSION['nome_animal'.$i];
+                            $data_nasc = $_SESSION['nasc_animal'.$i];
 
-                        $armazenar_pagamento_animal -> bind_param('ss',
-                        $forma_pag, $id_pass);
+                            $criar_passagem_animal = $conn -> 
+                            prepare("INSERT into passagem_animal VALUES (default, ?, ?, ?, ?, 'NAO', null, ?)");
 
-                        $armazenar_pagamento_animal -> execute();
-                    }
+                            $criar_passagem_animal -> bind_param('sssss',
+                            $nome_animal, $data_nasc, $aviao_ida, $aviao_volta, $_SESSION['verifica_cliente']);
 
-                    if(mysqli_insert_id($conn) && $inseriu == 1){
-                        // Processo de armazenar pagamento
-                        $armazenar_pagamento = "INSERT INTO pagamento (forma_pag, valor_pag, data_pag, fk_passagem) SELECT '$forma_pag', 988.95, NOW(), pk_passagem FROM passagem WHERE fk_cliente = $cliente AND cpf_passagem = $cpf_passagem AND poltrona_ida = $assento_ida AND aviao_ida = $aviao_ida";
-                        print_r($armazenar_pagamento);
-                        $executa_armazenagem = mysqli_query($conn, $armazenar_pagamento);
-                
-                        if(mysqli_insert_id($conn)){
-                            $_SESSION['msg'] = "<h5 class='text-uppercase text-success text-center'>compra realizada com sucesso</h5>";
-                            header('Location: minhas_viagens.php');
-                        }else{
-                            $_SESSION['msg'] = "<h5 class='text-uppercase text-danger text-center'>não foi possível realizar a compra - tente novamente mais tarde</h5>";
-                            header('Location: ../pagamento.php');
+                            $criar_passagem_animal -> execute();
+
+                            $id_pass = mysqli_insert_id($conn);
+                            $armazenar_pagamento_animal = $conn -> 
+                            prepare("INSERT INTO pagamento (forma_pag, valor_pag, data_pag, fk_passagem_animal) 
+                            values (?, 150, NOW(), ?)");
+
+                            $armazenar_pagamento_animal -> bind_param('ss',
+                            $forma_pag, $id_pass);
+
+                            $armazenar_pagamento_animal -> execute();
                         }
-                    }else{
-                        $_SESSION['msg'] = "<h5 class='text-uppercase text-danger text-center'>não foi possível realizar a compra - tente novamente mais tarde</h5>";
-                        header('Location: ../pagamento.php');
-                    }
-                }else{
-                    $criar_passagem = "INSERT INTO passagem (sobrenome, nome, cpf_passagem, poltrona_ida, fk_cliente, aviao_ida) VALUES ('$sobrenome', '$nome', '$cpf_passagem', '$assento_ida', $cliente, $aviao_ida)";
-                    $executa_criacao = mysqli_query($conn, $criar_passagem);
 
-                    $inseriu = 1;
-                            
-                    for ($i = 1; $i <= $_SESSION['quantAnimal']; $i++) {
-                        $nome_animal = $_SESSION['nome_animal'.$i];
-                        $data_nasc = $_SESSION['nasc_animal'.$i];
+                        if(mysqli_insert_id($conn) && $inseriu == 1){
+                            // Processo de armazenar pagamento
+                            $armazenar_pagamento = "INSERT INTO pagamento (forma_pag, valor_pag, data_pag, fk_passagem) SELECT '$forma_pag', 988.95, NOW(), pk_passagem FROM passagem WHERE fk_cliente = $cliente AND cpf_passagem = $cpf_passagem AND poltrona_ida = $assento_ida AND aviao_ida = $aviao_ida";
+                           
+                            $executa_armazenagem = mysqli_query($conn, $armazenar_pagamento);
+                    
+                            $stmtIda = $conn -> prepare('UPDATE gestao_voo SET quant_animal = ? WHERE pk_voo = ?');
 
-                        $criar_passagem_animal = $conn -> 
-                        prepare("INSERT into passagem_animal VALUES (default, ?, ?, ?, ?, 'NAO', null, ?)");
+                            $novaQuant = $quant_animalAvi + $_SESSION['quantAnimal'];
+                            $stmtIda -> bind_param('ss', $novaQuant, $aviao_ida);
 
-                        $criar_passagem_animal -> bind_param('sssss',
-                        $nome_animal, $data_nasc, $aviao_ida, $aviao_volta, $_SESSION['verifica_cliente']);
+                            $stmtIda -> execute();
 
-                        $criar_passagem_animal -> execute();
+                            $stmtVolta = $conn -> prepare('UPDATE gestao_voo SET quant_animal = ? WHERE pk_voo = ?');
 
-                        $id_pass = mysqli_insert_id($conn);
-                        $armazenar_pagamento_animal = $conn -> 
-                        prepare("INSERT INTO pagamento (forma_pag, valor_pag, data_pag, fk_passagem_animal) 
-                        values (?, 150, NOW(), ?)");
+                            $stmtVolta -> bind_param('ss', $novaQuant, $aviao_volta);
 
-                        $armazenar_pagamento_animal -> bind_param('ss',
-                        $forma_pag, $id_pass);
+                            $stmtVolta -> execute();
 
-                        $armazenar_pagamento_animal -> execute();
-                    }
-
-                    if (mysqli_insert_id($conn) && $inseriu == 1) {
-                        // Processo de armazenar pagamento
-                        $armazenar_pagamento = "INSERT INTO pagamento (forma_pag, valor_pag, data_pag, fk_passagem) SELECT '$forma_pag', 988.95, NOW(), pk_passagem FROM passagem WHERE fk_cliente = $cliente AND cpf_passagem = $cpf_passagem AND poltrona_ida = $assento_ida AND aviao_ida = $aviao_ida";
-                        $executa_armazenagem = mysqli_query($conn, $armazenar_pagamento);
-
-                        if(mysqli_insert_id($conn)){
                             $_SESSION['msg'] = "<h5 class='text-uppercase text-success text-center'>compra realizada com sucesso</h5>";
                             header('Location: minhas_viagens.php');
                         }else{
@@ -357,7 +334,68 @@
                             header('Location: ../pagamento.php');
                         }
                     } else {
-                        $_SESSION['msg'] = "<h5 class='text-uppercase text-danger text-center'>não foi possível realizar a compra - tente novamente mais tarde</h5>";
+                        $_SESSION['msg'] = "<h5 class='text-uppercase text-danger text-center'>Compra não realizada, quantidade de animais ultrapassará o limite</h5>";
+                        header('Location: ../pagamento.php');
+                    }
+
+                }else{
+                    $stmtIda = $conn -> prepare('SELECT quant_animal FROM gestao_voo WHERE  pk_voo = ?');
+
+                    $stmtIda -> bind_param('s', $aviao_ida);
+
+                    $stmtIda -> execute();
+
+                    $stmtIda->bind_result($quant_animalAvi);
+
+                    if ($quant_animalAvi + $_SESSION['quantAnimal'] <= 6) {
+                        $criar_passagem = "INSERT INTO passagem (sobrenome, nome, cpf_passagem, poltrona_ida, fk_cliente, aviao_ida) VALUES ('$sobrenome', '$nome', '$cpf_passagem', '$assento_ida', $cliente, $aviao_ida)";
+                        $executa_criacao = mysqli_query($conn, $criar_passagem);
+    
+                        $inseriu = 1;
+                                
+                        for ($i = 1; $i <= $_SESSION['quantAnimal']; $i++) {
+                            $nome_animal = $_SESSION['nome_animal'.$i];
+                            $data_nasc = $_SESSION['nasc_animal'.$i];
+    
+                            $criar_passagem_animal = $conn -> 
+                            prepare("INSERT into passagem_animal VALUES (default, ?, ?, ?, ?, 'NAO', null, ?)");
+    
+                            $criar_passagem_animal -> bind_param('sssss',
+                            $nome_animal, $data_nasc, $aviao_ida, $aviao_volta, $_SESSION['verifica_cliente']);
+    
+                            $criar_passagem_animal -> execute();
+    
+                            $id_pass = mysqli_insert_id($conn);
+                            $armazenar_pagamento_animal = $conn -> 
+                            prepare("INSERT INTO pagamento (forma_pag, valor_pag, data_pag, fk_passagem_animal) 
+                            values (?, 150, NOW(), ?)");
+    
+                            $armazenar_pagamento_animal -> bind_param('ss',
+                            $forma_pag, $id_pass);
+    
+                            $armazenar_pagamento_animal -> execute();
+                        }
+    
+                        if (mysqli_insert_id($conn) && $inseriu == 1) {
+                            // Processo de armazenar pagamento
+                            $armazenar_pagamento = "INSERT INTO pagamento (forma_pag, valor_pag, data_pag, fk_passagem) SELECT '$forma_pag', 988.95, NOW(), pk_passagem FROM passagem WHERE fk_cliente = $cliente AND cpf_passagem = $cpf_passagem AND poltrona_ida = $assento_ida AND aviao_ida = $aviao_ida";
+                            $executa_armazenagem = mysqli_query($conn, $armazenar_pagamento);
+                            
+                            $stmt = $conn -> prepare('UPDATE gestao_voo SET quant_animal = ? WHERE pk_voo = ?');
+
+                            $novaQuant = $quant_animalAvi + $_SESSION['quantAnimal'];
+                            $stmt -> bind_param('ss', $novaQuant, $aviao_ida);
+
+                            $stmt -> execute();
+                            
+                            $_SESSION['msg'] = "<h5 class='text-uppercase text-success text-center'>compra realizada com sucesso</h5>";
+                            header('Location: minhas_viagens.php');
+                        } else {
+                            $_SESSION['msg'] = "<h5 class='text-uppercase text-danger text-center'>não foi possível realizar a compra - tente novamente mais tarde</h5>";
+                            header('Location: ../pagamento.php');
+                        }
+                    } else {
+                        $_SESSION['msg'] = "<h5 class='text-uppercase text-danger text-center'>Compra não realizada, quantidade de animais ultrapassará o limite</h5>";
                         header('Location: ../pagamento.php');
                     }
                 }

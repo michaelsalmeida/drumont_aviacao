@@ -1,5 +1,5 @@
 <?php
-    $servidor = 'localhost:3307';
+    $servidor = 'localhost';
     $usuario = 'root';
     $senha = '';
     $dbname = 'maverickdb';

@@ -1,6 +1,5 @@
 <?php
-
-    $servidor = 'localhost:3307';
+    $servidor = 'localhost';
     $usuario = 'root';
     $senha = '';
     $dbname = 'maverickdb';
@@ -9,42 +8,24 @@
 
 
     function verificarAnimaisIda (){
-        // $qtdAnimal = $_GET['qtdani'];
-        // $nome = $_SESSION['partida'];
-        // $data = $_SESSION['data_partida'] . "%";
-
-        $qtdAnimal = 3;
-        $nome = 'Aeroporto de São Paulo/Congonhas (CGH)';
-        $data = '2023-09-10';
+        $idIda = $_GET['partida'];
 
         global $conn;
         
+        $stmtIda = $conn -> prepare('SELECT quant_animal FROM gestao_voo WHERE  pk_voo = ?');
 
-        // aviao - gestao_voo
+        $stmtIda -> bind_param('s', $idIda);
 
-        $stmt = $conn -> prepare('UPDATE gestao_voo
-        SET quant_animal = ?
-        WHERE local_voo = ? and 
-        hora_partida like ?');
+        $stmtIda -> execute();
 
-        $stmt -> bind_param('sss', $qtdAnimal, $nome, $data);
+        $stmtIda->bind_result($quant_animal);
 
-        $stmt -> execute();
-
-        $result = $stmt -> get_result();
-
-        echo $result;
-
-        if (mysqli_affected_rows($conn) > 0){
-            echo 'funfou';
+        if ($stmtIda->fetch()){
+            echo $quant_animal;
         } else {
-            echo 'deu merda';
+            echo -1;
         }
-
-
     }
 
-    echo verificarAnimaisIda();
-
-
+    verificarAnimaisIda();
 ?>
