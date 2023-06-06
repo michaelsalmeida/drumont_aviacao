@@ -346,6 +346,8 @@
                     $stmtIda -> execute();
 
                     $stmtIda->bind_result($quant_animalAvi);
+                    $stmtIda -> fetch();
+                    $stmtIda -> close();
 
                     if ($quant_animalAvi + $_SESSION['quantAnimal'] <= 6) {
                         $criar_passagem = "INSERT INTO passagem (sobrenome, nome, cpf_passagem, poltrona_ida, fk_cliente, aviao_ida) VALUES ('$sobrenome', '$nome', '$cpf_passagem', '$assento_ida', $cliente, $aviao_ida)";
